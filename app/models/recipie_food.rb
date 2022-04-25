@@ -1,0 +1,2 @@
+class RecipieFood < ApplicationRecord
+end

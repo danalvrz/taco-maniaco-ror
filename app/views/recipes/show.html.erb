@@ -1,10 +1,20 @@
-<div class="mx-auto md:w-2/3 w-full flex">
+<div>
+<div class="mx-auto w-full flex">
   <div class="mx-auto">
     <% if notice.present? %>
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
-
-    <%= render @recipe %>
+    <h2 class="text-3xl font-bold w-full text-center"> <%= @recipe.name %></h2>
+    <div class="flex">
+    <div class="p-5">
+    <p class="mt-3">Preparation time: <%= @recipe.preparation_time %> hrs</p>
+    <p class="mt-3">Cooking time: <%= @recipe.cooking_time %> hrs</p>
+    <p class="mt-3">Descirtion: <%= @recipe.description %></p>
+    </div>
+    <div class="p-5">
+    Public:
+    </div>
+    </div>
 
     <%= link_to 'Edit this recipe', edit_recipe_path(@recipe), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
@@ -12,4 +22,48 @@
     </div>
     <%= link_to 'Back to recipes', recipes_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
+  
 </div>
+
+<div class="relative mt-10 overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Food
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Quantity
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Value
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <span class="sr-only">Edit</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <%# <% @foods.each do |food| %>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                    <%#<%= food.name %>
+                    Apple
+                </th>
+                <td class="px-6 py-4">
+                    <%#<%= food.measurement_unit %>
+                    20g
+                </td>
+                <td class="px-6 py-4">
+                    <%#$<%= food.price %>
+                    $3.50
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <%= button_to 'Delete', recipe_path(@recipe), method: :delete, class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+                </td>
+            </tr>
+            <%#<% end %>
+        </table>
+        </div>
+</div>
+

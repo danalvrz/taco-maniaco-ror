@@ -66,7 +66,6 @@ class RecipesController < ApplicationController
     @shopping_list = Recipe.includes(:recipie_foods).find(params[:recipe_id])
   end
 
-
   private
 
   # Use callbacks to share common setup or constraints between actions.

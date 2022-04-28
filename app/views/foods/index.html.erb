@@ -6,11 +6,44 @@
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Foods</h1>
     <% if user_signed_in? %>
-    <%= link_to 'New food', new_food_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= link_to 'Add food', new_food_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
     <% end %>
   </div>
-
-  <div id="foods" class="min-w-full">
-    <%= render @foods %>
-  </div>
+  <div class="relative mt-10 overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Food
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Measurement
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Unit price
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <span class="sr-only">Edit</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @foods.each do |food| %>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                    <%= food.name %>
+                </th>
+                <td class="px-6 py-4">
+                    <%= food.measurement_unit %>
+                </td>
+                <td class="px-6 py-4">
+                    $<%= food.price %>
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <%= button_to 'Delete', food_path(food), method: :delete, class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+                </td>
+            </tr>
+            <% end %>
+        </table>
+        </div>
 </div>

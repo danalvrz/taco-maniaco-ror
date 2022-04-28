@@ -1,43 +1,53 @@
 class RecipieFoodsController < ApplicationController
-  before_action :set_recipie_food, only: %i[show edit update destroy]
+  # before_action :set_recipe_food, only: %i[show edit update destroy]
 
-  # GET /recipie_foods or /recipie_foods.json
+  # GET /recipe_foods or /recipe_foods.json
   def index
-    @recipie_foods = RecipieFood.all
+    @recipie_foods = Food.all
   end
 
-  # GET /recipie_foods/1 or /recipie_foods/1.json
+  # GET /recipe_foods/1 or /recipe_foods/1.json
   def show; end
 
-  # GET /recipie_foods/new
+  # GET /recipe_foods/new
   def new
     @recipie_food = RecipieFood.new
+    @recipe = Recipe.find(params[:recipe_id])
+    @recipie_food.recipe_id = @recipe.id
+    @foods = Food.all
   end
 
-  # GET /recipie_foods/1/edit
-  def edit; end
+  # GET /recipe_foods/1/edit
+  def edit
+    @recipe = Recipe.find(params[:recipe_id])
+    @recipie_food = RecipieFood.find(params[:id])
+  end
 
-  # POST /recipie_foods or /recipie_foods.json
+  # POST /recipe_foods or /recipe_foods.json
   def create
-    @recipie_food = RecipieFood.new(recipie_food_params)
+    @recipe = Recipe.find(params[:recipe_id])
+    @recipie_food = @recipe.recipie_foods.new(recipie_food_params)
 
     respond_to do |format|
       if @recipie_food.save
-        format.html { redirect_to recipie_food_url(@recipie_food), notice: 'Recipie food was successfully created.' }
-        format.json { render :show, status: :created, location: @recipie_food }
+        format.html { redirect_to recipe_url(@recipe), notice: 'Recipe food was successfully created.' }
+        format.json { render :show, status: :created, location: @recipe }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @recipie_food.errors, status: :unprocessable_entity }
+        format.json { render json: @recipe_food.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /recipie_foods/1 or /recipie_foods/1.json
+  # PATCH/PUT /recipe_foods/1 or /recipe_foods/1.json
   def update
+    @recipe = Recipe.find(params[:recipe_id])
+    @recipie_food = @recipe.recipie_foods
+
     respond_to do |format|
       if @recipie_food.update(recipie_food_params)
-        format.html { redirect_to recipie_food_url(@recipie_food), notice: 'Recipie food was successfully updated.' }
-        format.json { render :show, status: :ok, location: @recipie_food }
+        format.html { redirect_to recipes_path(params[:recipe_id]), notice: 'Recipe food was successfully updated.' }
+        format.json { render :show, status: :ok, location: @recipe }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @recipie_food.errors, status: :unprocessable_entity }
@@ -45,12 +55,13 @@ class RecipieFoodsController < ApplicationController
     end
   end
 
-  # DELETE /recipie_foods/1 or /recipie_foods/1.json
+  # DELETE /recipe_foods/1 or /recipe_foods/1.json
   def destroy
+    @recipie_food = RecipieFood.find(params[:id])
     @recipie_food.destroy
 
     respond_to do |format|
-      format.html { redirect_to recipie_foods_url, notice: 'Recipie food was successfully destroyed.' }
+      format.html { redirect_to recipes_path, notice: 'Recipe food was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -58,12 +69,12 @@ class RecipieFoodsController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_recipie_food
-    @recipie_food = RecipieFood.find(params[:id])
-  end
+  # def set_recipe_food
+  #   @recipe_food = RecipeFood.find(params[:id])
+  # end
 
   # Only allow a list of trusted parameters through.
   def recipie_food_params
-    params.require(:recipie_food).permit(:quantity)
+    params.require(:recipie_food).permit(:quantity, :food_id)
   end
 end

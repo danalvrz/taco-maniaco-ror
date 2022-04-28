@@ -1,0 +1,45 @@
+<div class="bg-white shadow overflow-hidden sm:rounded-lg w-full">
+  <div class="px-4 py-5 sm:px-6">
+  <h3 class="text-center font-bold text-2xl">
+    Shopping list
+  </h3>
+  </div>
+  <div class="border-t border-gray-200">
+    <div>
+      <div class="bg-white px-4 py-5 flex justify-between">
+        <div class="text-lg font-medium text-gray-500">Amount of food items to buy:</div>
+        <div class="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2"><%= @shopping_list.recipie_foods.count %></div>
+        <div class="text-lg font-medium text-gray-500">Total value of food needed:</div>
+        <div class="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2">
+        <% value = 0%>
+        <% @shopping_list.recipie_foods.each do |recipie_food| %>
+            <% value = value + recipie_food.quantity * recipie_food.food.price %>
+        <% end %>
+        $<%= value %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="px-2 py-2 sm:px-6">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-6 py-3">Food</th>
+          <th scope="col" class="px-6 py-3">Quantity</th>
+          <th scope="col" class="px-6 py-3">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @shopping_list.recipie_foods.each do | recipe_food | %>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <td scope="col" class="px-6 py-3"><%= recipe_food.food.name %></td>
+          <td scope="col" class="px-6 py-3"><%= recipe_food.quantity %><%= recipe_food.food.measurement_unit %></td>
+          <td scope="col" class="px-6 py-3">$<%= recipe_food.quantity * recipe_food.food.price%></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    </div>
+  </div>

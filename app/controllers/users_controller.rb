@@ -16,6 +16,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
   end
+
   # GET /users/new
   def new
     @user = User.new

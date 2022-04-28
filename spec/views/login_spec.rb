@@ -25,6 +25,6 @@ RSpec.describe 'Log In page', type: :feature do
     fill_in 'Email', with: 'usertest@gmail.com'
     fill_in 'Password', with: '456789'
     click_button 'Log in'
-    expect(page).to have_current_path("/users/sign_in")
+    expect(page).to have_current_path('/users/sign_in')
   end
 end

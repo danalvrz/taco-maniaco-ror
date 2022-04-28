@@ -69,10 +69,17 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem 'capybara'
+  gem 'capybara', '>= 2.7.1'
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+
+# Run against this stable release
+group :development, :test do
+  gem 'database_cleaner'
+  gem 'rspec-rails', '~> 5.0.0'
+end
+gem 'rails-controller-testing'
 
 gem 'devise'
 gem 'rubocop', '>= 1.0', '< 2.0'

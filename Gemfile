@@ -83,3 +83,5 @@ gem 'rails-controller-testing'
 
 gem 'devise'
 gem 'rubocop', '>= 1.0', '< 2.0'
+gem 'digest', '~> 3.1.0'
+

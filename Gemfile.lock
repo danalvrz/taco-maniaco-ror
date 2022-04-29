@@ -145,6 +145,8 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.4-x86_64-darwin)
       racc (~> 1.4)
+    nokogiri (1.13.4-x86_64-linux)
+      racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.22.1)
     parser (3.1.2.0)
@@ -242,6 +244,8 @@ GEM
     strscan (3.0.1)
     tailwindcss-rails (2.0.8-x86_64-darwin)
       railties (>= 6.0.0)
+    tailwindcss-rails (2.0.8-x86_64-linux)
+      railties (>= 6.0.0)
     thor (1.2.1)
     timeout (0.2.0)
     turbo-rails (1.0.1)
@@ -270,6 +274,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-21
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap
@@ -277,6 +282,7 @@ DEPENDENCIES
   database_cleaner
   debug
   devise
+  digest (~> 3.1.0)
   importmap-rails
   jbuilder
   pg (~> 1.1)

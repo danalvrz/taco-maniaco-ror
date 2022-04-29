@@ -1,0 +1,7 @@
+<%= render @recipie_food %>
+
+<div>
+  <%= link_to "Edit this recipe food", edit_recipie_food_path(@recipe_food) %> |
+  <%= link_to "Back to recipe foods", recipie_foods_path %>
+  <%= button_to "Destroy this recipe food", @recipie_food, method: :delete %>
+</div>

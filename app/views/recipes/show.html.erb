@@ -1,0 +1,81 @@
+<div class="mx-auto w-full mt-10">
+<div class="mx-auto w-full flex">
+  <div class="mx-auto w-3/5">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+    <h2 class="text-3xl font-bold w-full text-center"> <%= @recipe.name %></h2>
+    <div class="flex">
+    <div class="p-5">
+    <div class="w-full flex justify-between">
+    <p class="mt-3">Preparation time: <%= @recipe.preparation_time %> hrs</p>
+    <p class="mt-3 ml-32">Public:</p>
+    <%if @recipe.public%>
+    <%= image_tag "https://img.icons8.com/emoji/48/000000/check-mark-emoji.png", class: "w-5 h-5 mt-3 ml-3" %>  
+    <% else %> 
+    <%= image_tag "https://img.icons8.com/emoji/48/000000/cross-mark-emoji.png", class: "w-5 h-5 mt-3 ml-3" %>  
+    <% end %>
+    </div>
+    <p class="mt-3">Cooking time: <%= @recipe.cooking_time %> hrs</p>
+    <p class="mt-3">Description: <%= @recipe.description %></p>
+    </div>
+    <div class="p-5">
+    
+    </div>
+    </div>
+    
+    <%# <%= link_to 'Edit this recipe', edit_recipe_path(@recipe), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+     <% if current_user == @recipe.user || @recipe.public%>
+     <div class="px-2 py-2 sm:px-6 flex w-full justify-between">
+              <%= button_to "Generate shopping list", "/shopping_list/#{@recipe.id}", method: :get, class: "mt-2 rounded-lg py-3 px-5 bg-sky-200 font-medium" %>
+              <%= link_to 'Add ingridient', new_recipe_recipie_food_path(@recipe), class: "mt-2 rounded-lg py-3 px-5 bg-sky-200 font-medium" %>
+     </div>
+     <% end %>
+  </div>
+  <div>
+  <%= link_to 'Back to recipes', recipes_path, class: "text-white h-fit ml-2 rounded-lg py-3 px-5 bg-blue-400 inline-block font-medium" %>
+  <%#<%= button_to 'Destroy this recipe', recipe_path(@recipe), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-red-200 font-medium" %>
+ </div>
+  
+</div>
+
+<div class="relative mt-10 overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Food
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Quantity
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Value
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    <span class="sr-only">Edit</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @recipie_foods.each do |food| %>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                    <%= food.food.name %>
+                </th>
+                <td class="px-6 py-4">
+                    <%= food.quantity %>
+                </td>
+                <td class="px-6 py-4">
+                    $<%= food.food.price * food.quantity %>
+                </td>
+                <td class="px-6 py-4 text-right flex justify-between">
+                 <%= link_to "Modify", "", class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+               <%= button_to "Delete", recipe_recipie_food_path(recipe_id: @recipe.id, id: food.id), method: :delete, class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+                </td>
+            </tr>
+            <% end %>
+        </table>
+        </div>
+</div>
+

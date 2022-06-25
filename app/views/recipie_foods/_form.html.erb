@@ -19,10 +19,10 @@
 
   <div class="my-5">
     <%= form.label :quantity %>
-    <%= form.text_field :quantity, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :quantity, class: "block shadow rounded-full border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit "Add", class: "rounded-full text-neutral-500 py-3 ml-2 px-5 bg-gray-100 inline-block font-medium hover:text-yellow-600 cursor-pointer" %>
   </div>
 <% end %>

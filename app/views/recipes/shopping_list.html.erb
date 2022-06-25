@@ -1,12 +1,12 @@
-<div class="bg-white shadow overflow-hidden sm:rounded-lg w-full">
+<div class="bg-neutral-100 shadow overflow-hidden sm:rounded-lg w-full">
   <div class="px-4 py-5 sm:px-6">
-  <h3 class="text-center font-bold text-2xl">
+  <h3 class="text-center font-bold text-2xl text-yellow-600">
     Shopping list
   </h3>
   </div>
-  <div class="border-t border-gray-200">
+  <div>
     <div>
-      <div class="bg-white px-4 py-5 flex justify-between">
+      <div class="bg-white lg:px-20 md:px-12 px-6 py-5 mb-8 flex lg:flex-row md:flex-row flex-col justify-between">
         <div class="text-lg font-medium text-gray-500">Amount of food items to buy:</div>
         <div class="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2"><%= @shopping_list.recipie_foods.count %></div>
         <div class="text-lg font-medium text-gray-500">Total value of food needed:</div>

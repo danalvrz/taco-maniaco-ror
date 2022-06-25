@@ -1,7 +1,6 @@
-<div id="<%= dom_id user %>">
+<div id="<%= dom_id user %>" class="flex justify-end">
 
   <% if action_name != "show" %>
-    <%= link_to 'Edit user', edit_user_path(user), class: "rounded-lg py-3 ml-2 mt-10 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
+    <%= link_to 'Edit user', edit_user_path(user), class: "rounded-full text-neutral-500 py-3 ml-2 px-5 bg-gray-100 inline-block font-medium hover:text-yellow-600" %>
   <% end %>
 </div>

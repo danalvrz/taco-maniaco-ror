@@ -4,24 +4,24 @@
   <% end %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Public Recipes</h1>
+    <h1 class="font-bold text-4xl text-white">Public Recipes</h1>
   </div>
 
-  <div id="recipes" class="min-w-full">
+  <div id="recipes" class="w-4/5 lg:w-3/5 mx-auto">
     <% @recipes.each do |recipe| %>
-    <div class="recipe-card border bg-slate-300 p-5 flex justify-between mt-5 rounded-lg">
-    <div>
-    <p class="font-bold text-2xl"><%= link_to "#{recipe.name}", recipe %></p>
-    <p>By: <%=recipe.user.name %></p>
+    <div class="recipe-card border bg-slate-100 p-5 flex justify-between mt-5 rounded-lg lg:px-20 md:px-12 px-7">
+    <div class="pr-5">
+    <p class="font-bold text-3xl text-yellow-600 border-b pb-5 w-fit border-neutral-400 hover:text-yellow-500"><%= link_to "#{recipe.name}", recipe %></p>
+    <p class="mt-6 text-neutral-700 text-xl">By: <%=recipe.user.name %></p>
     </div>
-    <div class="mr-10">
-    <p>Total food items: <%= recipe.recipie_foods.count%></p>
+    <div class="lg:mr-10 text-lg mt-3">
+    <p class="my-3">Items: <%= recipe.recipie_foods.count%></p>
     <% value = 0%>
             <% recipe.recipie_foods.each do |recipie_food| %>
                 <% value = value + recipie_food.quantity * recipie_food.food.price %>
             <% end %>
             
-    <p>Total price: $<%= value %></p>
+    <p>Total: $<%= value %></p>
     
     </div>
     </div>

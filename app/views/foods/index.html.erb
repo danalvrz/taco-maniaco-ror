@@ -4,9 +4,9 @@
   <% end %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Foods</h1>
+    <h1 class="font-bold text-4xl text-white">Ingredients</h1>
     <% if user_signed_in? %>
-    <%= link_to 'Add food', new_food_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= link_to 'New ingredient', new_food_path, class: "text-center rounded-full text-neutral-500 py-3 ml-2 px-5 bg-gray-100 inline-block font-medium hover:text-yellow-600" %>
     <% end %>
   </div>
   <div class="relative mt-10 overflow-x-auto shadow-md sm:rounded-lg">
@@ -14,7 +14,7 @@
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    Food
+                    Ingredient
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Measurement
@@ -40,7 +40,7 @@
                     $<%= food.price %>
                 </td>
                 <td class="px-6 py-4 text-right">
-                    <%= button_to 'Delete', food_path(food), method: :delete, class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+                    <%= button_to 'Delete', food_path(food), method: :delete, class: "font-medium text-yellow-600 hover:underline" %>
                 </td>
             </tr>
             <% end %>

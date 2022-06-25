@@ -3,22 +3,26 @@
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Welcome 
+  <div class="flex flex-col justify-between">
+  <% if user_signed_in? %>
+  <div id="users" class="min-w-full self-end">
+    <%= render @users.where("id = #{current_user.id}") %>
+  </div>
+  <% end %>
+    <h1 class="font-bold text-3xl lg:text-6xl md:text-6xl text-white mt-12 text-center">Welcome 
     <% if user_signed_in? %>
     back
     <% end %>
     to Taco Maniaco<% if user_signed_in? %>, <%=@user.name%>
     <% end %>!</h1>
   </div>
+  
+  <div class="flex flex-col justify-center w-full items-center content-center pt-12">
+  <%= image_tag("taco.png", size: "300x300", alt: "Taco") %>
   <% unless user_signed_in? %>
-  <div class="mt-5 ml-2">
-  Please Sing Up, or Log in!
+  <div class="mt-5 lg:mx-40 text-white text-xl flex content-center items-center">
+    <p>Please Sing up, or Log in!</p>
   </div>
   <% end %>
-  <% if user_signed_in? %>
-  <div id="users" class="min-w-full">
-    <%= render @users.where("id = #{current_user.id}") %>
   </div>
-  <% end %>
 </div>

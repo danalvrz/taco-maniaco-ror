@@ -18,7 +18,7 @@
     <p class="my-3">Items: <%= recipe.recipie_foods.count%></p>
     <% value = 0%>
             <% recipe.recipie_foods.each do |recipie_food| %>
-                <% value = value + recipie_food.quantity * recipie_food.food.price %>
+                <% value = (value + recipie_food.quantity * recipie_food.food.price).round(2) %>
             <% end %>
             
     <p>Total: $<%= value %></p>
